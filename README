@@ -1,0 +1,57 @@
+# 📱 Labs Android
+
+Repositório dedicado a estudos, testes e experimentações no desenvolvimento Android.
+
+A proposta deste espaço é centralizar pequenos projetos práticos, explorando conceitos de forma incremental e aplicada, sem compromisso inicial com produção.
+
+---
+
+## 📂 Estrutura
+
+Cada pasta representa um projeto independente:
+
+* `CalculadoraBasicaII/` → Aplicativo simples de calculadora para prática de lógica e interface
+* (futuros projetos serão adicionados aqui)
+
+---
+
+## 🎯 Objetivo
+
+* Praticar desenvolvimento Android com Android Studio
+* Explorar componentes de UI (XML / Views)
+* Trabalhar lógica de programação aplicada
+* Entender estrutura de projetos com Gradle
+
+---
+
+## 🧪 Abordagem
+
+Os projetos aqui são:
+
+* Simples e incrementais
+* Focados em aprendizado
+* Sem preocupação inicial com arquitetura avançada
+
+---
+
+## 🚀 Possível evolução
+
+Projetos que evoluírem podem ser:
+
+* Refatorados
+* Documentados com mais detalhes
+* Migrados para repositórios próprios
+
+---
+
+## 🛠️ Tecnologias utilizadas
+
+* Android Studio
+* Kotlin / Java
+* Gradle
+
+---
+
+## 📌 Observação
+
+Este repositório funciona como um laboratório pessoal de aprendizado contínuo.
