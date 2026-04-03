@@ -1,9 +1,28 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.CalculadoraBasicaII" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <!-- Tema Principal -->
+    <style name="Theme.CalculadoraBasicaII" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Cor primária para botões e elementos de destaque -->
+        <item name="colorPrimary">@color/corBotao</item>
+        <item name="android:statusBarColor">@color/corBotao</item>
+
+        <!-- Fundo padrão para todas as Activities -->
+        <item name="android:windowBackground">#CDFFE8E8</item>
     </style>
 
-    <style name="Theme.CalculadoraBasicaII" parent="Base.Theme.CalculadoraBasicaII" />
+    <!-- Estilo específico para os botões da calculadora -->
+    <style name="BotaoCalculadora" parent="Widget.Material3.Button">
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/corTextoBotao</item>
+        <item name="backgroundTint">@color/corBotao</item>
+        <item name="cornerRadius">8dp</item>
+    </style>
+
+    <!-- Estilo para o Display -->
+    <style name="DisplayCalculadora">
+        <item name="android:background">@color/corFundoDisplay</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:gravity">center_vertical|end</item>
+    </style>
 </resources>
