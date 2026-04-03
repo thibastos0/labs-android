@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         Button btnIgual = findViewById(R.id.btnIgual);
 
         //fechar.
-        Button btnFechar = findViewById(R.id.btnFechar);
+        TextView btnFechar = findViewById(R.id.btnFechar);
 
         //cliques.
 
@@ -243,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        if (valorAtual.equals("") && posicao > 0 ) {
+        if (valorAtual.isEmpty() && posicao > 0 ) {
             String valorAnterior = expressao.get(posicao - 1);
             if (valorAnterior.matches(".*[+\\-/*]$")) {
                 // Troca o último caractere do anterior pelo novo operador
