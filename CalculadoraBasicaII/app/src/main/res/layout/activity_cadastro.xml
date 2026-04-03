@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glSideStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.12" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glSideEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.88" />
+
+    <TextView
+        android:id="@+id/lblCadastro"
+        style="@style/TituloTela"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/cadastro_title"
+        app:layout_constraintStart_toStartOf="@id/glSideStart"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edtNomeCad"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/white"
+        android:hint="@string/nome_hint"
+        android:inputType="textPersonName"
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/glSideEnd"
+        app:layout_constraintStart_toStartOf="@id/glSideStart"
+        app:layout_constraintTop_toBottomOf="@id/lblCadastro" />
+
+    <EditText
+        android:id="@+id/edtEmailCad"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/white"
+        android:hint="@string/email_hint"
+        android:inputType="textEmailAddress"
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/glSideEnd"
+        app:layout_constraintStart_toStartOf="@id/glSideStart"
+        app:layout_constraintTop_toBottomOf="@id/edtNomeCad" />
+
+    <EditText
+        android:id="@+id/edtSenhaCad"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/white"
+        android:hint="@string/senha_hint"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/glSideEnd"
+        app:layout_constraintStart_toStartOf="@id/glSideStart"
+        app:layout_constraintTop_toBottomOf="@id/edtEmailCad" />
+
+    <EditText
+        android:id="@+id/edtConfirmaSenhaCad"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/white"
+        android:hint="@string/confirma_hint"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/glSideEnd"
+        app:layout_constraintStart_toStartOf="@id/glSideStart"
+        app:layout_constraintTop_toBottomOf="@id/edtSenhaCad" />
+
+    <Button
+        android:id="@+id/btnFinalizarCad"
+        style="@style/BotaoCalculadora"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/cadastro_action"
+        app:layout_constraintEnd_toStartOf="@id/glSideEnd"
+        app:layout_constraintStart_toStartOf="@id/glSideStart"
+        app:layout_constraintTop_toBottomOf="@id/edtConfirmaSenhaCad" />
+
+    <TextView
+        android:id="@+id/btnVoltarLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:padding="10dp"
+        android:text="@string/link_login"
+        android:textColor="@color/cortextoTela"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/glSideEnd"
+        app:layout_constraintStart_toStartOf="@id/glSideStart"
+        app:layout_constraintTop_toBottomOf="@id/btnFinalizarCad" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
