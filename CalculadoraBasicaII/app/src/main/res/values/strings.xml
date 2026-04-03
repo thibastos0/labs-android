@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Calculadora Basica II</string>
+    <string name="login_title">Login</string>
+    <string name="email_hint">E-mail</string>
+    <string name="senha_hint">Senha</string>
+    <string name="login_action">Entrar</string>
+    <string name="link_cadastro">Ainda não tem conta? Cadastre-se</string>
     <string name="display_text">0</string>
     <string name="close_app">X</string>
     <string name="calculo_text"></string>
