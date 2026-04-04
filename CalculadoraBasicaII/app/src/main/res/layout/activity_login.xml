@@ -75,15 +75,17 @@
         app:layout_constraintTop_toBottomOf="@id/edtSenha" />
 
     <TextView
-        android:id="@+id/txtLinkCadastro"
+        android:id="@+id/txtLinkTelaCadastro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:padding="10dp"
         android:text="@string/link_cadastro"
         android:textColor="@color/cortextoTela"
-        android:textSize="16sp"
+        android:textSize="20.5sp"
         android:textStyle="bold"
+        android:clickable="true"
+        android:focusable="true"
         app:layout_constraintEnd_toStartOf="@id/glEnd"
         app:layout_constraintStart_toStartOf="@id/glStart"
         app:layout_constraintTop_toBottomOf="@id/btnLoginAction" />

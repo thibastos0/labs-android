@@ -5,7 +5,7 @@
         <item name="colorPrimary">@color/corBotao</item>
         <item name="android:statusBarColor">@color/corBotao</item>
 
-        <!-- Fundo padrão para todas as Activities -->
+        <!-- Fundo padrão para todas as Activities CD é nível de transparência -->
         <item name="android:windowBackground">#CDFFE8E8</item>
     </style>
 

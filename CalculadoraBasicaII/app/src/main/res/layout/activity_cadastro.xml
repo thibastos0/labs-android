@@ -90,7 +90,7 @@
         app:layout_constraintTop_toBottomOf="@id/edtSenhaCad" />
 
     <Button
-        android:id="@+id/btnFinalizarCad"
+        android:id="@+id/btnCriaCadastro"
         style="@style/BotaoCalculadora"
         android:layout_width="0dp"
         android:layout_height="55dp"
@@ -108,9 +108,12 @@
         android:padding="10dp"
         android:text="@string/link_login"
         android:textColor="@color/cortextoTela"
+        android:textSize="20.5sp"
         android:textStyle="bold"
+        android:clickable="true"
+        android:focusable="true"
         app:layout_constraintEnd_toStartOf="@id/glSideEnd"
         app:layout_constraintStart_toStartOf="@id/glSideStart"
-        app:layout_constraintTop_toBottomOf="@id/btnFinalizarCad" />
+        app:layout_constraintTop_toBottomOf="@id/btnCriaCadastro" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
