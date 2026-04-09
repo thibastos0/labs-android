@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
 import com.example.calculadorabasicaii.database.DatabaseConnection;
 import com.example.calculadorabasicaii.model.CalcMemo;
@@ -11,8 +12,10 @@ import com.example.calculadorabasicaii.model.CalcMemo;
 public class CalcMemoDAO {
     private SQLiteDatabase db;
     private final DatabaseConnection con;
+    private final Context context;
 
     public CalcMemoDAO(Context context){
+        this.context = context;
         con = new DatabaseConnection(context);
     }
 
@@ -38,13 +41,18 @@ public class CalcMemoDAO {
         Cursor cursor = db.rawQuery(sql,
                 new String[]{String.valueOf(userId)}
         );
-        int result = -1;
-        cursor.moveToFirst();
+
         if (cursor.getCount() <= 0) {
             cursor.close();
-            this.saveCalcMemo(new CalcMemo(userId, "0", "0"));
-            return null;
+            CalcMemo novoCalcMemo = new CalcMemo(userId, "0", "0");
+            boolean sucesso = this.saveCalcMemo(novoCalcMemo);
+            if (!sucesso) {
+                Toast.makeText(context, "Não foi possível iniciar o histórico do usuário!", Toast.LENGTH_SHORT).show();
+                return null;
+            }
+            return novoCalcMemo;
         }
+        cursor.moveToFirst();
         CalcMemo calcMemo = new CalcMemo();
         calcMemo.setId(cursor.getInt(cursor.getColumnIndexOrThrow("id")));
         calcMemo.setUserId(cursor.getInt(cursor.getColumnIndexOrThrow("userId")));

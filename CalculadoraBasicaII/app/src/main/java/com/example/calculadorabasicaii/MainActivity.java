@@ -4,19 +4,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.calculadorabasicaii.dao.CalcMemoDAO;
+import com.example.calculadorabasicaii.model.CalcMemo;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView txtCalculo;
-    TextView txtDisplay;
+    private TextView txtCalculo, txtDisplay;
     List<String> expressao;
     int posicao;
+    private CalcMemoDAO calcMemoDAO;
+    private int userId;
+    private CalcMemo calcMemo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +32,19 @@ public class MainActivity extends AppCompatActivity {
 
         txtCalculo = findViewById(R.id.txtCalculo);
         txtDisplay = findViewById(R.id.txtDisplay);
+        userId = getIntent().getIntExtra("userId", -1);
+
+        calcMemoDAO = new CalcMemoDAO(this);
+        calcMemo = calcMemoDAO.findCalcMemo(userId);
+
+        if(calcMemo != null){
+            txtDisplay.setText(calcMemo.getDisplay());
+            txtCalculo.setText(calcMemo.getCalculo());
+            if(!calcMemo.getCalculo().equals("0") && !calcMemo.getDisplay().equals("0")) txtCalculo.setVisibility(TextView.VISIBLE);
+        } else {
+            txtDisplay.setText("0");
+        }
+
         expressao = new ArrayList<>();
         expressao.add(txtDisplay.getText().toString().trim());
         posicao = 0;
@@ -97,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         btnPercent.setOnClickListener(v -> onOperadorClick("%"));
 
         //clicando para fechar o app.
-        btnFechar.setOnClickListener(v -> finish());
+        btnFechar.setOnClickListener(v -> UpdateMemo());
 
         //clicando igual.
         btnIgual.setOnClickListener(new View.OnClickListener() {
@@ -208,6 +227,7 @@ public class MainActivity extends AppCompatActivity {
                 //expressao.add(total.replace(".", ",")); // Permite continuar a conta com o resultado
                 posicao = 0;
             }
+
         });
 
     }
@@ -386,6 +406,17 @@ public class MainActivity extends AppCompatActivity {
 
         return total;
 
+    }
+
+    private void UpdateMemo() {
+        calcMemo.setDisplay(txtDisplay.getText().toString());
+        calcMemo.setCalculo(txtCalculo.getText().toString());
+        boolean sucesso = calcMemoDAO.updateCalcMemo(calcMemo);
+        if (!sucesso) {
+            System.out.println("Não foi possível atualizar o histórico do usuário!");
+            Toast.makeText(this, "Não foi possível atualizar o histórico do usuário!", Toast.LENGTH_SHORT).show();
+        }
+        finish();
     }
 
 }

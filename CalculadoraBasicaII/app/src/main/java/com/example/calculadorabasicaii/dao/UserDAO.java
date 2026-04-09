@@ -48,7 +48,27 @@ public class UserDAO {
         cursor.close();
 
         return id;
-
     }
+
+    public String getUserNameById(int userId) {
+        db = con.getReadableDatabase();
+
+        String sql = "SELECT name FROM " +
+                DatabaseConnection.TABELA_USER +
+                " WHERE id = ?";
+
+        Cursor cursor = db.rawQuery(sql,
+                new String[]{String.valueOf(userId)}
+        );
+
+        String name = "";
+        if (cursor.moveToFirst()) {
+            name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+        }
+        cursor.close();
+
+        return name;
+    }
+
 
 }
