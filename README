@@ -10,7 +10,7 @@ A proposta deste espaço é centralizar pequenos projetos práticos, explorando 
 
 Cada pasta representa um projeto independente:
 
-* `CalculadoraBasicaII/` → Aplicativo simples de calculadora para prática de lógica e interface
+* `CalculadoraBasicaII/` → Aplicativo de calculadora com sistema de login, múltiplos usuários e histórico persistente (SQLite)
 * (futuros projetos serão adicionados aqui)
 
 ---
