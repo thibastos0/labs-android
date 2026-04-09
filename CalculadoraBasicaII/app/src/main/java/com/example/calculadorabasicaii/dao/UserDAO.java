@@ -70,5 +70,17 @@ public class UserDAO {
         return name;
     }
 
+    public boolean updateUser(int userId, String newName, String newPass) {
+        db = con.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("name", newName);
+        values.put("password", newPass);
+
+        long result = db.update(DatabaseConnection.TABELA_USER, values, "id = ?",
+                new String[]{String.valueOf(userId)});
+        return result != -1;
+    }
+
 
 }

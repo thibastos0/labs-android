@@ -1,10 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".PerfilActivity">
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glSideStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.12" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glSideEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.88" />
+
+    <TextView
+        android:id="@+id/lblPerfil"
+        style="@style/TituloTela"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/perfil_title"
+        app:layout_constraintStart_toStartOf="@id/glSideStart"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lblNomeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/nome_label"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/glSideStart"
+        app:layout_constraintTop_toBottomOf="@id/lblPerfil" />
+
+    <EditText
+        android:id="@+id/edtNomePerfil"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/white"
+        android:hint="@string/nome_cad_hint"
+        android:autofillHints="name"
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:inputType="text"
+        app:layout_constraintEnd_toStartOf="@id/glSideEnd"
+        app:layout_constraintStart_toStartOf="@id/glSideStart"
+        app:layout_constraintTop_toBottomOf="@id/lblNomeLabel" />
+
+    <TextView
+        android:id="@+id/lblSenhaLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/nova_senha_label"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/glSideStart"
+        app:layout_constraintTop_toBottomOf="@id/edtNomePerfil" />
+
+    <EditText
+        android:id="@+id/edtNovaSenhaPerfil"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/white"
+        android:hint="@string/nova_senha_hint"
+        android:inputType="textPassword"
+        android:autofillHints="password"
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/glSideEnd"
+        app:layout_constraintStart_toStartOf="@id/glSideStart"
+        app:layout_constraintTop_toBottomOf="@id/lblSenhaLabel" />
+
+    <EditText
+        android:id="@+id/edtConfirmaNovaSenha"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/white"
+        android:hint="@string/confirma_nova_senha_hint"
+        android:inputType="textPassword"
+        android:autofillHints="password"
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/glSideEnd"
+        app:layout_constraintStart_toStartOf="@id/glSideStart"
+        app:layout_constraintTop_toBottomOf="@id/edtNovaSenhaPerfil" />
+
+    <Button
+        android:id="@+id/btnSalvarPerfil"
+        style="@style/BotaoCalculadora"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/salvar_action"
+        app:layout_constraintEnd_toStartOf="@id/glSideEnd"
+        app:layout_constraintStart_toStartOf="@id/glSideStart"
+        app:layout_constraintTop_toBottomOf="@id/edtConfirmaNovaSenha" />
+
+    <TextView
+        android:id="@+id/btnVoltarMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:padding="10dp"
+        android:text="@string/Link_cancelar"
+        android:textColor="@color/cortextoTela"
+        android:textStyle="bold"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintEnd_toStartOf="@id/glSideEnd"
+        app:layout_constraintStart_toStartOf="@id/glSideStart"
+        app:layout_constraintTop_toBottomOf="@id/btnSalvarPerfil" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
