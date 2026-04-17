@@ -25,7 +25,7 @@ public class UserDAO {
         values.put("mail", user.getMail());
         values.put("password", user.getPassword());
 
-        long result = db.insert(DatabaseConnection.TABELA_USER, null, values);
+        long result = db.insert(con.TABELA_USER, null, values);
         return result != -1;
     }
 
@@ -34,7 +34,7 @@ public class UserDAO {
         db = con.getReadableDatabase();
 
         String sql = "SELECT * FROM " +
-                DatabaseConnection.TABELA_USER +
+                con.TABELA_USER +
                 " WHERE mail = ? AND password = ?";
 
         Cursor cursor = db.rawQuery(sql,
@@ -54,7 +54,7 @@ public class UserDAO {
         db = con.getReadableDatabase();
 
         String sql = "SELECT name FROM " +
-                DatabaseConnection.TABELA_USER +
+                con.TABELA_USER +
                 " WHERE id = ?";
 
         Cursor cursor = db.rawQuery(sql,
@@ -77,7 +77,7 @@ public class UserDAO {
         values.put("name", newName);
         values.put("password", newPass);
 
-        long result = db.update(DatabaseConnection.TABELA_USER, values, "id = ?",
+        long result = db.update(con.TABELA_USER, values, "id = ?",
                 new String[]{String.valueOf(userId)});
         return result != -1;
     }

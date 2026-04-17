@@ -1,6 +1,7 @@
 package com.example.calculadorabasicaii;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -413,9 +414,11 @@ public class MainActivity extends AppCompatActivity {
         calcMemo.setCalculo(txtCalculo.getText().toString());
         boolean sucesso = calcMemoDAO.updateCalcMemo(calcMemo);
         if (!sucesso) {
-            System.out.println("Não foi possível atualizar o histórico do usuário!");
+            //System.out.println("Não foi possível atualizar o histórico do usuário!");
+            Log.i("Update CalcMemo", "Não foi possível atualizar o histórico do usuário!");
             Toast.makeText(this, "Não foi possível atualizar o histórico do usuário!", Toast.LENGTH_SHORT).show();
         }
+        Log.i("Update CalcMemo", "Atualizado o histórico do usuário!");
         finish();
     }
 
