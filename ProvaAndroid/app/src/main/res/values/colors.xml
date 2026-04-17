@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="cortextoTela">#FF000000</color>
+    <color name="corfundoTela">#FFFFFFFF</color>
+    <color name="corBotao">#3F51B5</color>
+    <color name="corTextoBotao">#FFFFFF</color>
+    <color name="corfonteTela">#000000</color>
+    <color name="corFundoTopTela">#03A9F4</color>
+    <color name="corHintEditText">#DBD6D6</color>"
+</resources>

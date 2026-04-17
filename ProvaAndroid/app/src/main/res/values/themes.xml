@@ -1,0 +1,33 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.ProvaAndroid" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/corBotao</item>
+        <item name="android:statusBarColor">@color/corBotao</item>
+    </style>
+
+    <!-- Estilo específico para os botões -->
+    <style name="BotaoProva" parent="Widget.Material3.Button">
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/corTextoBotao</item>
+        <item name="backgroundTint">@color/corBotao</item>
+        <item name="cornerRadius">8dp</item>
+    </style>
+
+    <!-- Estilo para o topo -->
+    <style name="TopTela">
+        <item name="android:background">@color/corFundoTopTela</item>
+        <item name="android:textColor">@color/corfonteTela</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:gravity">center_vertical|end</item>
+    </style>
+
+    <style name="BotaoFormulario" parent="BotaoProva">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginHorizontal" tools:targetApi="26">32dp</item>
+    </style>
+
+    <style name="Theme.ProvaAndroid" parent="Base.Theme.ProvaAndroid" />
+</resources>

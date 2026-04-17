@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Prova Android</string>
+    <string name="telaCadastroAluno">Cadastro de Aluno</string>"
+    <string name="telaCalculoNota">Calculo de Nota</string>
+    <string name="BoasVindas">Bem-vindo(a) à Prova!</string>
+    <string name="descricaoProvaTitulo">Descrição da Prova</string>
+    <string name="descicaoProvaSubtitulo">Desenvolva um aplicativo com 2 funcionalidades:</string>
+    <string name="descricaoProvaDetalhes1">1. Calcular a média final do aluno (com basea nas notas).</string>
+    <string name="descriaProvaDetalhes2">2. Cadastrar RA, Nome e E-mail e salvar no banco SQLite.</string>
+</resources>
