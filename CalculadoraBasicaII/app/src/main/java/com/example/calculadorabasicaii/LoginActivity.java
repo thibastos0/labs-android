@@ -1,6 +1,7 @@
 package com.example.calculadorabasicaii;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,12 +19,23 @@ public class LoginActivity extends AppCompatActivity {
     private TextView txtCadastro;
     private Button btnLogin;
     private UserDAO userDAO;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_login);
+
+        sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+        boolean logged = sharedPreferences.getBoolean("logged", false);
+
+        if(logged) {
+            int userId = sharedPreferences.getInt("userId", -1);
+            navegarParaTelaMenu(userId);
+            return;
+        } else {
+            setContentView(R.layout.activity_login);
+        }
 
         btnLogin = findViewById(R.id.btnLoginAction);
         edtEmail = findViewById(R.id.edtEmail);
@@ -43,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(this, "Login Inválido!", Toast.LENGTH_SHORT).show();
                 return;
             }
+            salvarSection(id);
             navegarParaTelaMenu(id);
         });
 
@@ -56,6 +69,11 @@ public class LoginActivity extends AppCompatActivity {
         Intent telaMenu = new Intent(LoginActivity.this, MenuActivity.class);
         telaMenu.putExtra("userId", userId);
         startActivity(telaMenu);
+    }
+
+    private void salvarSection(int userId) {
+        sharedPreferences.edit().putBoolean("logged", true).apply();
+        sharedPreferences.edit().putInt("userId", userId).apply();
     }
 
     private void navegarParaTelaCadastro(){

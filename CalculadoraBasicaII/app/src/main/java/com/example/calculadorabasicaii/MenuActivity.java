@@ -1,6 +1,7 @@
 package com.example.calculadorabasicaii;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -43,6 +44,8 @@ public class MenuActivity extends AppCompatActivity {
 
         btnSair.setOnClickListener(v -> {
             //logica para deslogar usuário?
+            SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+            sharedPreferences.edit().clear().apply();
             navegarParaTelaLogin();
         });
     }
