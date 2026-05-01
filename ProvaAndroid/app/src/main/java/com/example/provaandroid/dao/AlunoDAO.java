@@ -2,32 +2,28 @@ package com.example.provaandroid.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 
-import com.example.provaandroid.database.DatabaseConnection;
+import androidx.room.Dao;
+import androidx.room.Delete;
+import androidx.room.Insert;
+import androidx.room.Query;
+
 import com.example.provaandroid.model.Aluno;
 
-public class AlunoDAO {
+import java.util.List;
 
-    private SQLiteDatabase db;
-    private final DatabaseConnection con;
+@Dao
+public interface AlunoDAO {
 
-    public AlunoDAO(Context context){
-        con = new DatabaseConnection(context);
-    }
+    @Query("SELECT * FROM aluno")
+    List<Aluno> getAll();
 
-    //INSERT
-    public boolean insertUser(Aluno aluno) {
-        db = con.getWritableDatabase();
+    @Query("SELECT * FROM aluno WHERE id = :id")
+    Aluno findById(int id);
 
-        ContentValues values = new ContentValues();
-        values.put("ra", aluno.getRa());
-        values.put("nome", aluno.getNome());
-        values.put("email", aluno.getEmail());
+    @Insert
+    void insertAluno(Aluno aluno);
 
-        long result = db.insert(con.TABELA_ALUNO, null, values);
-        return result != -1;
-    }
-
-
+    @Delete
+    void deleteAluno(Aluno aluno);
 }
