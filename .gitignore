@@ -1,0 +1,33 @@
+# Builds (qualquer nível)
+**/build/
+
+# Gradle
+.gradle/
+
+# Local config
+local.properties
+**/local.properties
+
+# IDE
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Android
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Logs
+*.log
+
+# Aulas em off
+CalculadoraBasica/
+CalculadoraIMC/
+MeuPrimeiroAPP/
+NavegacaoTelas/
+AppRevisao/
+ConexaoFirebase/

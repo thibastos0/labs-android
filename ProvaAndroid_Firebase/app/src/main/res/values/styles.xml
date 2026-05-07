@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ═══════════════════════════════════════════════
+         AppBar / Toolbar
+    ═══════════════════════════════════════════════ -->
+
+    <style name="Widget.ProvaAndroid.AppBarLayout" parent="Widget.MaterialComponents.AppBarLayout.Primary">
+        <item name="android:elevation">4dp</item>
+        <item name="android:background">@color/toolbar_background</item>
+    </style>
+
+    <style name="Widget.ProvaAndroid.Toolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="android:background">@color/toolbar_background</item>
+        <item name="titleTextColor">@color/toolbar_text</item>
+        <item name="titleTextAppearance">@style/TextAppearance.ProvaAndroid.Toolbar.Title</item>
+        <item name="android:minHeight">56dp</item>
+    </style>
+
+    <!-- ═══════════════════════════════════════════════
+         Tipografia
+    ═══════════════════════════════════════════════ -->
+
+    <style name="TextAppearance.ProvaAndroid.Toolbar.Title" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textColor">@color/toolbar_text</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.ProvaAndroid.ScreenTitle" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textColor">@color/gray_900</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="TextAppearance.ProvaAndroid.CardTitle" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">@color/gray_900</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.ProvaAndroid.Body" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textColor">@color/gray_800</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextAppearance.ProvaAndroid.Label" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textColor">@color/gray_800</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.ProvaAndroid.Result" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textColor">@color/yellow_result_text</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="TextAppearance.ProvaAndroid.Success" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textColor">@color/success_banner_text</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- ═══════════════════════════════════════════════
+         Botões
+    ═══════════════════════════════════════════════ -->
+
+    <!-- Botão primário roxo (padrão do app via tema) -->
+    <style name="Widget.ProvaAndroid.Button.Primary" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/purple_primary</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="android:minHeight">52dp</item>
+        <item name="android:elevation">2dp</item>
+        <item name="rippleColor">@color/purple_primary_dark</item>
+    </style>
+
+    <!-- Botão verde — usado para "Cadastrar Aluno" e "Salvar no SQLite" -->
+    <style name="Widget.ProvaAndroid.Button.Secondary" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/green_action</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="android:minHeight">52dp</item>
+        <item name="android:elevation">2dp</item>
+        <item name="rippleColor">@color/green_action_dark</item>
+    </style>
+
+    <!-- Botão azul — usado para "Calcular Média" -->
+    <style name="Widget.ProvaAndroid.Button.Blue" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/blue_button</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="android:minHeight">52dp</item>
+        <item name="android:elevation">2dp</item>
+        <item name="rippleColor">@color/blue_button_dark</item>
+    </style>
+
+    <!-- ═══════════════════════════════════════════════
+         Campos de texto (EditText simples, sem TextInputLayout)
+         Use guidelines de acessibilidade: label separado + EditText
+    ═══════════════════════════════════════════════ -->
+
+    <style name="Widget.ProvaAndroid.EditText" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="android:background">@drawable/bg_input_field</item>
+        <item name="android:textColor">@color/input_text</item>
+        <item name="android:textColorHint">@color/hint</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+
+    <!-- ═══════════════════════════════════════════════
+         Cards
+    ═══════════════════════════════════════════════ -->
+
+    <!-- Card branco padrão com sombra sutil -->
+    <style name="Widget.ProvaAndroid.Card" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/surface</item>
+        <item name="cardCornerRadius">12dp</item>
+        <item name="cardElevation">4dp</item>
+        <item name="contentPadding">20dp</item>
+    </style>
+
+    <!-- Card do resultado da média — fundo amarelo claro -->
+    <style name="Widget.ProvaAndroid.Card.Result" parent="Widget.ProvaAndroid.Card">
+        <item name="cardBackgroundColor">@color/yellow_result_bg</item>
+        <item name="cardElevation">2dp</item>
+        <item name="contentPadding">16dp</item>
+    </style>
+
+    <!-- Banner de sucesso — fundo verde claro -->
+    <style name="Widget.ProvaAndroid.Card.Success" parent="Widget.ProvaAndroid.Card">
+        <item name="cardBackgroundColor">@color/success_banner_bg</item>
+        <item name="cardElevation">0dp</item>
+        <item name="contentPadding">12dp</item>
+    </style>
+
+</resources>

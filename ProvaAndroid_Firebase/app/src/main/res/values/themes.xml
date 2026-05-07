@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        Tema base do app.
+        Herda de Theme.MaterialComponents para garantir compatibilidade com
+        componentes Material (Toolbar, TextInputLayout, etc.) sem depender
+        exclusivamente da biblioteca Google — os atributos são sobrescritos
+        abaixo para seguir a identidade visual da prova.
+    -->
+    <style name="Theme.ProvaAndroid_Firebase" parent="Theme.MaterialComponents.Light.NoActionBar">
+
+        <!-- Paleta primária -->
+        <item name="colorPrimary">@color/purple_primary</item>
+        <item name="colorPrimaryDark">@color/purple_primary_dark</item>
+        <item name="colorPrimaryVariant">@color/purple_primary_dark</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+
+        <!-- Paleta secundária / accent -->
+        <item name="colorSecondary">@color/green_action</item>
+        <item name="colorSecondaryVariant">@color/green_action_dark</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+        <!-- Superfícies -->
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/on_surface</item>
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor">@color/status_bar</item>
+        <item name="android:windowLightStatusBar">false</item>
+
+        <!-- Tipografia padrão do sistema — sem override de fonte externa -->
+        <item name="android:fontFamily">sans-serif</item>
+
+        <!-- Ripple / feedback de toque -->
+        <item name="colorControlHighlight">#33FFFFFF</item>
+
+        <!-- Estilo padrão de botão (aplicado a todos os <Button> do app) -->
+        <item name="buttonStyle">@style/Widget.ProvaAndroid.Button.Primary</item>
+
+        <!-- Estilo padrão de campo de texto -->
+        <item name="editTextStyle">@style/Widget.ProvaAndroid.EditText</item>
+
+        <!-- Remove elevação padrão do AppBarLayout para controle manual -->
+        <item name="appBarLayoutStyle">@style/Widget.ProvaAndroid.AppBarLayout</item>
+
+        <!-- Toolbar -->
+        <item name="toolbarStyle">@style/Widget.ProvaAndroid.Toolbar</item>
+
+    </style>
+
+    <!--
+        Tema para a SplashScreen / Activity de entrada, caso seja implementada.
+        Exibe fundo roxo enquanto o app carrega.
+    -->
+    <style name="Theme.ProvaAndroid.Splash" parent="Theme.ProvaAndroid_Firebase">
+        <item name="android:windowBackground">@color/purple_primary</item>
+    </style>
+
+</resources>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- App -->
+    <string name="app_name">Prova Android</string>
+
+    <!-- ─── Tela Inicial (MainActivity) ─── -->
+    <string name="home_title">Bem-vindo(a) à Prova!</string>
+    <string name="home_card_title">Descrição da Prova</string>
+    <string name="home_card_body">Desenvolva um aplicativo com 2 funcionalidades:</string>
+    <string name="home_feature_1">1. Calcular a média final do aluno (com base nas notas).</string>
+    <string name="home_feature_2">2. Cadastrar RA, Nome e E-mail e salvar no banco SQLite.</string>
+    <string name="home_btn_grades">1 - Calcular Média</string>
+    <string name="home_btn_register">2 - Cadastrar Aluno</string>
+    <string name="home_btn_logout">Sair</string>
+
+    <!-- ─── Tela de Notas (GradesActivity) ─── -->
+    <string name="grades_toolbar_title">Notas do Aluno</string>
+    <string name="grades_section_title">Digite as notas</string>
+    <string name="grades_label_prova1">Nota da Prova 1:</string>
+    <string name="grades_label_prova2">Nota da Prova 2:</string>
+    <string name="grades_label_trabalho">Nota do Trabalho:</string>
+    <string name="grades_label_atividade">Nota da Atividade:</string>
+    <string name="grades_hint_prova1">Ex: 8.5</string>
+    <string name="grades_hint_prova2">Ex: 7.0</string>
+    <string name="grades_hint_trabalho">Ex: 9.0</string>
+    <string name="grades_hint_atividade">Ex: 10.0</string>
+    <string name="grades_btn_calculate">Calcular Média</string>
+    <string name="grades_result_prefix">Média Final: </string>
+    <string name="grades_error_empty">Por favor, preencha todos os campos.</string>
+    <string name="grades_error_invalid">Valor inválido em um ou mais campos.</string>
+
+    <!-- ─── Tela de Cadastro (RegisterActivity) ─── -->
+    <string name="register_toolbar_title">Cadastro do Aluno</string>
+    <string name="register_section_title">Preencha os dados</string>
+    <string name="register_label_ra">RA:</string>
+    <string name="register_label_name">Nome:</string>
+    <string name="register_label_email">E-mail:</string>
+    <string name="register_hint_ra">Ex: 123456</string>
+    <string name="register_hint_name">Ex: Maria Silva</string>
+    <string name="register_hint_email">Ex: maria@email.com</string>
+
+    <!-- ─── Tela de Cadastro — campos novos de senha ─── -->
+    <string name="register_label_password">Senha:</string>
+    <string name="register_label_password_confirm">Confirmar Senha:</string>
+    <string name="register_hint_password">Mínimo 6 caracteres</string>
+    <string name="register_hint_password_confirm">Repita a senha</string>
+    <string name="register_btn_save">Cadastrar</string>
+    <string name="register_error_password_short">A senha deve ter ao menos 6 caracteres.</string>
+    <string name="register_error_password_mismatch">As senhas não coincidem.</string>
+
+    <!-- ─── Tela de Login (LoginActivity) ─── -->
+    <string name="login_title">Bem-vindo(a)!</string>
+    <string name="login_subtitle">Faça login para continuar</string>
+    <string name="login_label_email">E-mail:</string>
+    <string name="login_label_password">Senha:</string>
+    <string name="login_hint_email">seu@email.com</string>
+    <string name="login_hint_password">Sua senha</string>
+    <string name="login_btn_login">Entrar</string>
+    <string name="login_link_register">Não tem conta? Cadastre-se</string>
+    <string name="login_error_empty">Preencha e-mail e senha.</string>
+    <string name="login_error_invalid">E-mail ou senha inválidos.</string>
+    <string name="login_error_firebase">Erro de autenticação. Tente novamente.</string>
+
+    <!-- Acessibilidade / Content Descriptions -->
+    <string name="cd_icon_grades">Ícone de notas</string>
+    <string name="cd_icon_register">Ícone de cadastro</string>
+    <string name="cd_icon_login">Ícone de login</string>
+    <string name="cd_btn_back">Voltar</string>
+    <string name="cd_icon_success">Ícone de sucesso</string>
+
+</resources>

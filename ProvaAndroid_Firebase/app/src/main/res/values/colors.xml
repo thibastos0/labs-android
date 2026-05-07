@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Primary brand colors -->
+    <color name="purple_primary">#6C3FC5</color>
+    <color name="purple_primary_dark">#5A32A3</color>
+    <color name="purple_primary_light">#8B5CF6</color>
+
+    <!-- Secondary / accent colors -->
+    <color name="green_action">#28A745</color>
+    <color name="green_action_dark">#1E7E34</color>
+    <color name="green_success">#2ECC71</color>
+
+    <color name="blue_button">#1565C0</color>
+    <color name="blue_button_dark">#0D47A1</color>
+
+    <color name="yellow_result_bg">#FFF9C4</color>
+    <color name="yellow_result_text">#F57F17</color>
+
+    <!-- Neutrals -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="gray_100">#F5F5F5</color>
+    <color name="gray_200">#EEEEEE</color>
+    <color name="gray_400">#BDBDBD</color>
+    <color name="gray_600">#757575</color>
+    <color name="gray_800">#424242</color>
+    <color name="gray_900">#212121</color>
+
+    <!-- Semantic -->
+    <color name="background">#F0F0F8</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="on_surface">#212121</color>
+    <color name="hint">#9E9E9E</color>
+    <color name="divider">#E0E0E0</color>
+    <color name="error">#D32F2F</color>
+
+    <!-- Toolbar / AppBar -->
+    <color name="toolbar_background">#6C3FC5</color>
+    <color name="toolbar_text">#FFFFFF</color>
+    <color name="status_bar">#5A32A3</color>
+
+    <!-- Input fields -->
+    <color name="input_background">#FFFFFF</color>
+    <color name="input_border">#BDBDBD</color>
+    <color name="input_border_focused">#6C3FC5</color>
+    <color name="input_text">#212121</color>
+
+    <!-- Success banner -->
+    <color name="success_banner_bg">#E8F5E9</color>
+    <color name="success_banner_text">#2E7D32</color>
+    <color name="success_banner_icon">#43A047</color>
+
+</resources>

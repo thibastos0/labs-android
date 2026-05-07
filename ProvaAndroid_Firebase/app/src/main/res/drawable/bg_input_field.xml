@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Background para os EditText da aplicação.
+    Retângulo branco com borda cinza (estado normal) e borda roxa (estado focused).
+    Não depende de nenhum componente Google — usa apenas ShapeDrawable nativo.
+-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Estado: campo com foco -->
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/input_background" />
+            <stroke android:width="2dp" android:color="@color/input_border_focused" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+
+    <!-- Estado: campo com erro (use setError() no código) -->
+    <item android:state_activated="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/input_background" />
+            <stroke android:width="2dp" android:color="@color/error" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+
+    <!-- Estado padrão -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/input_background" />
+            <stroke android:width="1dp" android:color="@color/input_border" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+
+</selector>

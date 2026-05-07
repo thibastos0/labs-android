@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    activity_grades.xml — Tela de Notas (GradesActivity)
+    Contém: Toolbar com seta de voltar, 4 campos de nota, botão calcular
+    e card de resultado da média.
+    Guidelines:
+      - CoordinatorLayout + AppBarLayout para comportamento correto da Toolbar.
+      - ScrollView protege conteúdo em telas pequenas ou com teclado aberto.
+      - Campo de resultado (tv_result) inicia GONE; torna-se VISIBLE ao calcular.
+      - Labels separados dos EditText (acessibilidade: cada campo tem android:labelFor).
+      - inputType="numberDecimal" limita entrada a valores numéricos com decimais.
+-->
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".GradesActivity">
+
+    <!-- AppBar com Toolbar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar_grades"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.ProvaAndroid.AppBarLayout">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_grades"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:contentDescription="@string/grades_toolbar_title"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationContentDescription="@string/cd_btn_back"
+            app:title="@string/grades_toolbar_title"
+            style="@style/Widget.ProvaAndroid.Toolbar" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Conteúdo principal -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="32dp">
+
+            <!-- Ícone centralizado -->
+            <ImageView
+                android:id="@+id/iv_grades_icon"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="8dp"
+                android:src="@android:drawable/ic_menu_edit"
+                android:contentDescription="@string/cd_icon_grades" />
+
+            <!-- Título da seção -->
+            <TextView
+                android:id="@+id/tv_grades_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="24dp"
+                android:text="@string/grades_section_title"
+                android:textAppearance="@style/TextAppearance.ProvaAndroid.ScreenTitle" />
+
+            <!-- ── Nota da Prova 1 ── -->
+            <TextView
+                android:id="@+id/lbl_prova1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="@string/grades_label_prova1"
+                android:textAppearance="@style/TextAppearance.ProvaAndroid.Label"
+                android:labelFor="@id/et_prova1" />
+
+            <EditText
+                android:id="@+id/et_prova1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:hint="@string/grades_hint_prova1"
+                android:inputType="numberDecimal"
+                android:imeOptions="actionNext"
+                android:maxLines="1"
+                style="@style/Widget.ProvaAndroid.EditText" />
+
+            <!-- ── Nota da Prova 2 ── -->
+            <TextView
+                android:id="@+id/lbl_prova2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="@string/grades_label_prova2"
+                android:textAppearance="@style/TextAppearance.ProvaAndroid.Label"
+                android:labelFor="@id/et_prova2" />
+
+            <EditText
+                android:id="@+id/et_prova2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:hint="@string/grades_hint_prova2"
+                android:inputType="numberDecimal"
+                android:imeOptions="actionNext"
+                android:maxLines="1"
+                style="@style/Widget.ProvaAndroid.EditText" />
+
+            <!-- ── Nota do Trabalho ── -->
+            <TextView
+                android:id="@+id/lbl_trabalho"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="@string/grades_label_trabalho"
+                android:textAppearance="@style/TextAppearance.ProvaAndroid.Label"
+                android:labelFor="@id/et_trabalho" />
+
+            <EditText
+                android:id="@+id/et_trabalho"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:hint="@string/grades_hint_trabalho"
+                android:inputType="numberDecimal"
+                android:imeOptions="actionNext"
+                android:maxLines="1"
+                style="@style/Widget.ProvaAndroid.EditText" />
+
+            <!-- ── Nota da Atividade ── -->
+            <TextView
+                android:id="@+id/lbl_atividade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="@string/grades_label_atividade"
+                android:textAppearance="@style/TextAppearance.ProvaAndroid.Label"
+                android:labelFor="@id/et_atividade" />
+
+            <EditText
+                android:id="@+id/et_atividade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:hint="@string/grades_hint_atividade"
+                android:inputType="numberDecimal"
+                android:imeOptions="actionDone"
+                android:maxLines="1"
+                style="@style/Widget.ProvaAndroid.EditText" />
+
+            <!-- Botão Calcular Média (azul) -->
+            <Button
+                android:id="@+id/btn_calculate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="@string/grades_btn_calculate"
+                android:contentDescription="@string/grades_btn_calculate"
+                style="@style/Widget.ProvaAndroid.Button.Blue" />
+
+            <!--
+                Card de resultado — inicia com visibility="gone".
+                O código deve chamar resultCard.visibility = View.VISIBLE
+                após calcular a média.
+            -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                style="@style/Widget.ProvaAndroid.Card.Result">
+
+                <TextView
+                    android:id="@+id/tv_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/grades_result_prefix"
+                    android:textAppearance="@style/TextAppearance.ProvaAndroid.Result"
+                    tools:text="Média Final: 8.62" />
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

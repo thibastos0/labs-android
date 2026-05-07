@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    activity_login.xml — Tela de Login (LoginActivity)
+    Sem Toolbar — tela raiz do fluxo autenticado, não há "voltar".
+    Contém: logo/ícone, título, campos e-mail e senha com toggle de visibilidade,
+    botão Entrar e link para cadastro.
+    Guidelines:
+      - ScrollView raiz para teclado aberto não cortar campos.
+      - inputType="textPassword" oculta a senha por padrão.
+      - O botão iv_toggle_password chama o toggle no Java (não há componente nativo).
+      - imeOptions encadeia os campos: e-mail → senha → action Done.
+-->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/background"
+    tools:context=".LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:paddingTop="56dp"
+        android:paddingBottom="40dp">
+
+        <!-- Ícone / logo do app -->
+        <ImageView
+            android:id="@+id/iv_login_icon"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            android:src="@android:drawable/ic_dialog_email"
+            android:contentDescription="@string/cd_icon_login" />
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/tv_login_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="@string/login_title"
+            android:textAppearance="@style/TextAppearance.ProvaAndroid.ScreenTitle" />
+
+        <!-- Subtítulo -->
+        <TextView
+            android:id="@+id/tv_login_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:text="@string/login_subtitle"
+            android:textAppearance="@style/TextAppearance.ProvaAndroid.Body"
+            android:gravity="center" />
+
+        <!-- ── Campo E-mail ── -->
+        <TextView
+            android:id="@+id/lbl_login_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="@string/login_label_email"
+            android:textAppearance="@style/TextAppearance.ProvaAndroid.Label"
+            android:labelFor="@id/et_login_email" />
+
+        <EditText
+            android:id="@+id/et_login_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:hint="@string/login_hint_email"
+            android:inputType="textEmailAddress"
+            android:imeOptions="actionNext"
+            android:maxLines="1"
+            android:autofillHints="emailAddress"
+            style="@style/Widget.ProvaAndroid.EditText" />
+
+        <!-- ── Campo Senha com toggle ── -->
+        <TextView
+            android:id="@+id/lbl_login_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="@string/login_label_password"
+            android:textAppearance="@style/TextAppearance.ProvaAndroid.Label"
+            android:labelFor="@id/et_login_password" />
+
+        <!--
+            FrameLayout sobrepõe o EditText e o botão de olho.
+            O botão fica ancorado à direita dentro do mesmo espaço do campo.
+        -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp">
+
+            <EditText
+                android:id="@+id/et_login_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/login_hint_password"
+                android:inputType="textPassword"
+                android:imeOptions="actionDone"
+                android:maxLines="1"
+                android:paddingEnd="48dp"
+                android:autofillHints="password"
+                style="@style/Widget.ProvaAndroid.EditText" />
+
+            <!-- Botão olho: toggle visibilidade da senha -->
+            <ImageButton
+                android:id="@+id/iv_toggle_login_password"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="end|center_vertical"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_eye_toggle"
+                android:contentDescription="Mostrar ou esconder senha"
+                android:padding="12dp" />
+
+        </FrameLayout>
+
+        <!-- Botão Entrar (roxo — primário) -->
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="@string/login_btn_login"
+            android:contentDescription="@string/login_btn_login"
+            style="@style/Widget.ProvaAndroid.Button.Primary" />
+
+        <!-- Link para cadastro -->
+        <TextView
+            android:id="@+id/tv_go_to_register"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="@string/login_link_register"
+            android:textColor="@color/purple_primary"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true" />
+
+    </LinearLayout>
+</ScrollView>
