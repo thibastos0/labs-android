@@ -7,10 +7,12 @@ import android.widget.Button;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button btn_grades, btn_register, btn_logout;
-    //private FirebaseAuth usuario;
+    private FirebaseAuth aluno = FirebaseAuth.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         Intent telaLogin = new Intent(MainActivity.this, LoginActivity.class);
         telaLogin.addFlags(telaLogin.FLAG_ACTIVITY_NEW_TASK | telaLogin.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(telaLogin);
+        aluno.signOut();
         finish();
     }
 }
