@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-    activity_login.xml — Tela de Login (LoginActivity)
-    Sem Toolbar — tela raiz do fluxo autenticado, não há "voltar".
-    Contém: logo/ícone, título, campos e-mail e senha com toggle de visibilidade,
-    botão Entrar e link para cadastro.
-    Guidelines:
-      - ScrollView raiz para teclado aberto não cortar campos.
-      - inputType="textPassword" oculta a senha por padrão.
-      - O botão iv_toggle_password chama o toggle no Java (não há componente nativo).
-      - imeOptions encadeia os campos: e-mail → senha → action Done.
--->
+
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -134,6 +124,73 @@
             android:text="@string/login_btn_login"
             android:contentDescription="@string/login_btn_login"
             style="@style/Widget.ProvaAndroid.Button.Primary" />
+
+        <!-- ── Divisor "ou" ── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="@color/divider" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="@string/login_ou"
+                android:textColor="@color/gray_600"
+                android:textSize="13sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="@color/divider" />
+
+        </LinearLayout>
+
+        <!-- ── Botão Login com Google ── -->
+        <LinearLayout
+            android:id="@+id/btn_google_login"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@drawable/bg_btn_google"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_google"
+                android:contentDescription="Google"
+                android:layout_marginEnd="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/login_gloogle"
+                android:textColor="@color/gray_900"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+        <!--
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/btn_google_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:buttonSize="wide"
+            app:colorScheme="auto"/> -->
 
         <!-- Link para cadastro -->
         <TextView

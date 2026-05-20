@@ -57,10 +57,12 @@
     <string name="login_hint_email">seu@email.com</string>
     <string name="login_hint_password">Sua senha</string>
     <string name="login_btn_login">Entrar</string>
+    <string name="login_gloogle">Entrar com o Google</string>
     <string name="login_link_register">Não tem conta? Cadastre-se</string>
     <string name="login_error_empty">Preencha e-mail e senha.</string>
     <string name="login_error_invalid">E-mail ou senha inválidos.</string>
     <string name="login_error_firebase">Erro de autenticação. Tente novamente.</string>
+    <string name="login_ou">ou</string>
 
     <!-- Acessibilidade / Content Descriptions -->
     <string name="cd_icon_grades">Ícone de notas</string>

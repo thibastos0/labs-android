@@ -7,12 +7,16 @@ import android.widget.Button;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button btn_grades, btn_register, btn_logout;
     private FirebaseAuth aluno = FirebaseAuth.getInstance();
+    private GoogleSignInClient googleClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +30,15 @@ public class MainActivity extends AppCompatActivity {
         btn_grades.setOnClickListener(v -> navegaTelaGrades());
         btn_register.setOnClickListener(v -> navegaTelaCadastro());
         btn_logout.setOnClickListener(v -> sair());
+
+        GoogleSignInOptions signInOptions =
+                new GoogleSignInOptions.Builder(
+                        GoogleSignInOptions.DEFAULT_SIGN_IN
+                )
+                        .requestEmail()
+                        .build();
+
+        googleClient = GoogleSignIn.getClient(this, signInOptions);
     }
 
     private void navegaTelaGrades(){
@@ -46,6 +59,11 @@ public class MainActivity extends AppCompatActivity {
         telaLogin.addFlags(telaLogin.FLAG_ACTIVITY_NEW_TASK | telaLogin.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(telaLogin);
         aluno.signOut();
+
+        googleClient.signOut().addOnCompleteListener(task -> {
+            finish();
+        });
+
         finish();
     }
 }
