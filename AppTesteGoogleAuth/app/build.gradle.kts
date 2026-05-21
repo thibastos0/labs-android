@@ -31,8 +31,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
@@ -51,4 +51,20 @@ dependencies {
 
     implementation(platform("com.google.firebase:firebase-bom:34.13.0"))
     implementation("com.google.firebase:firebase-analytics")
+
+    //seguindo doc em https://firebase.google.com/docs/auth/android/google-signin?hl=pt-br e
+    //vídeo: https://www.youtube.com/watch?v=ELB0W7f_Ib4
+    // Import the BoM for the Firebase platform
+    implementation(platform("com.google.firebase:firebase-bom:34.12.0"))
+
+    // Add the dependency for the Firebase Authentication library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation("com.google.firebase:firebase-auth")
+
+    // Also add the dependencies for the Credential Manager libraries and specify their versions
+    implementation("androidx.credentials:credentials-play-services-auth:1.3.0")
+
+    implementation("androidx.credentials:credentials:1.6.0")
+    implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
+
 }
