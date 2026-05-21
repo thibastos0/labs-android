@@ -1,0 +1,5 @@
+comando:
+./gradlew signingReport
+
+Link:
+https://developers.google.com/android/guides/client-auth?hl=pt-br#maclinux
