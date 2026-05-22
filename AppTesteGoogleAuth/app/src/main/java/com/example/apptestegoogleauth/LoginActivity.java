@@ -41,22 +41,23 @@ public class LoginActivity extends AppCompatActivity {
         btnGoogleLogin = findViewById(R.id.btnGoogleLogin);
         mAuth = FirebaseAuth.getInstance();
 
-        // Instantiate a Google sign-in request
-        // defaul_web_client_id só aparece se der build já com o novo google-services.json
-        GetGoogleIdOption googleIdOption = new GetGoogleIdOption.Builder()
-                .setFilterByAuthorizedAccounts(false)
-                .setServerClientId(getString(R.string.default_web_client_id))
-                .build();
-
-        // Create the Credential Manager request
-        GetCredentialRequest request = new GetCredentialRequest.Builder()
-                .addCredentialOption(googleIdOption)
-                .build();
-
-        CredentialManager credentialManager = CredentialManager.create(this);
 
         btnGoogleLogin.setOnClickListener(v -> {
 
+
+            // Instantiate a Google sign-in request
+            // defaul_web_client_id só aparece se der build já com o novo google-services.json
+            GetGoogleIdOption googleIdOption = new GetGoogleIdOption.Builder()
+                    .setFilterByAuthorizedAccounts(false)
+                    .setServerClientId(getString(R.string.default_web_client_id))
+                    .build();
+
+            // Create the Credential Manager request
+            GetCredentialRequest request = new GetCredentialRequest.Builder()
+                    .addCredentialOption(googleIdOption)
+                    .build();
+
+            CredentialManager credentialManager = CredentialManager.create(this);
             //referênica: https://github.com/firebase/snippets-android
             // caminho: auth/app/src/main/java/com/google/firebase/quickstart/auth/GoogleSignInActivity.java
             credentialManager.getCredentialAsync(
@@ -115,8 +116,18 @@ public class LoginActivity extends AppCompatActivity {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d("GoogleAuth", "signInWithCredential:success");
                         FirebaseUser user = mAuth.getCurrentUser();
-                        //updateUI(user);
-                        navegaTelaHome();
+                        boolean isNewUser = task.getResult()
+                                .getAdditionalUserInfo()
+                                        .isNewUser();
+
+                        if (isNewUser) {
+                            Intent navegaTelaCadastro = new Intent(this, RegisterActivity.class);
+                            navegaTelaCadastro.putExtra("nome", user.getDisplayName());
+                            navegaTelaCadastro.putExtra("email", user.getEmail());
+                            startActivity(navegaTelaCadastro);
+                        } else {
+                            navegaTelaHome();
+                        }
                     } else {
                         // If sign in fails, display a message to the user
                         Log.w("GoogleAuth", "signInWithCredential:failure", task.getException());
