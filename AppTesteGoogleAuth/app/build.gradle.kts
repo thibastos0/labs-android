@@ -55,7 +55,7 @@ dependencies {
     //seguindo doc em https://firebase.google.com/docs/auth/android/google-signin?hl=pt-br e
     //vídeo: https://www.youtube.com/watch?v=ELB0W7f_Ib4
     // Import the BoM for the Firebase platform
-    implementation(platform("com.google.firebase:firebase-bom:34.12.0"))
+    //implementation(platform("com.google.firebase:firebase-bom:34.12.0"))
 
     // Add the dependency for the Firebase Authentication library
     // When using the BoM, you don't specify versions in Firebase library dependencies
@@ -66,5 +66,8 @@ dependencies {
 
     implementation("androidx.credentials:credentials:1.6.0")
     implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
+
+    //Geolocalização
+    implementation("com.google.android.gms:play-services-location:21.0.1")
 
 }
