@@ -15,6 +15,7 @@
     <string name="btn_register">Cadastrar</string>
     <string name="btn_google">Entrar com o Google</string>
     <string name="btn_logout">Sair da Conta</string>
+    <string name="btn_localizacao">Onde estou?</string>
 
     <string name="txt_dont_have_account">Não tem uma conta? Cadastre-se</string>
     <string name="txt_already_have_account">Já tem uma conta? Faça Login</string>
