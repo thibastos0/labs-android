@@ -6,6 +6,7 @@
     <string name="title_register">Criar Conta</string>
     <string name="subtitle_register">Preencha os dados para começar</string>
     <string name="title_home">Área Logada</string>
+    <string name="title_localizacao">Localização</string>
 
     <string name="hint_email">E-mail</string>
     <string name="hint_password">Senha</string>
@@ -16,6 +17,7 @@
     <string name="btn_google">Entrar com o Google</string>
     <string name="btn_logout">Sair da Conta</string>
     <string name="btn_localizacao">Onde estou?</string>
+    <string name="btn_localizar">Obter Localização</string>
 
     <string name="txt_dont_have_account">Não tem uma conta? Cadastre-se</string>
     <string name="txt_already_have_account">Já tem uma conta? Faça Login</string>

@@ -22,7 +22,7 @@ import java.util.concurrent.Executors;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private MaterialButton btnLogout;
+    private MaterialButton btnLogout, btnOndeEstou;
     private TextView txtProfileName, txtProfileEmail;
     private FirebaseAuth mAuth;
     @Override
@@ -33,6 +33,7 @@ public class HomeActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         btnLogout = findViewById(R.id.btnLogout);
+        btnOndeEstou = findViewById(R.id.btnOndeEstou);
         txtProfileName = findViewById(R.id.txtProfileName);
         txtProfileEmail = findViewById(R.id.txtProfileEmail);
 
@@ -41,6 +42,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
         btnLogout.setOnClickListener(v -> signOut());
+        btnOndeEstou.setOnClickListener(v -> navegaTelaLocalizacao());
     }
 
     private void signOut() {
@@ -72,6 +74,11 @@ public class HomeActivity extends AppCompatActivity {
     private void navegaTelaLogin(){
         Intent telaLogin = new Intent(this, LoginActivity.class);
         startActivity(telaLogin);
+    }
+
+    private void navegaTelaLocalizacao(){
+        Intent telaGeoloc = new Intent(this, GeolocActivity.class);
+        startActivity(telaGeoloc);
     }
 
 }
