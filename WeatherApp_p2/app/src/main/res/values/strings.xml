@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">WeatherApp Premium</string>
+    <string name="login_title">Bem-vindo ao WeatherApp</string>
+    <string name="login_subtitle">Descubra o clima em tempo real na sua localização</string>
+    <string name="btn_google_login">Entrar com o Google</string>
+    <string name="profile_title">Configurar Perfil</string>
+    <string name="hint_name">Nome Completo</string>
+    <string name="hint_email">E-mail</string>
+    <string name="btn_save">Salvar</string>
+    <string name="hint_city">Digite uma cidade...</string>
+    <string name="btn_update_city">Atualizar Clima</string>
+    <string name="favorites_title">Cidades Favoritas</string>
+
+    <string name="menu_favorites">Favoritos</string>
+    <string name="menu_profile">Ver Perfil</string>
+    <string name="menu_logout">Sair</string>
+</resources>
