@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<color name="weather_primary">#1F1E33</color>
+    <color name="weather_secondary">#4A90E2</color>
+    <color name="weather_background">#F4F7F6</color>
+    <color name="white">#FFFFFF</color>
+<color name="black">#000000</color>
+<color name="gray_text">#757575</color>
+<color name="favorite_red">#E91E63</color>
+    <color name="google_button_bg">#FFFFFF</color>
+</resources>
