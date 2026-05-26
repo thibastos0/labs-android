@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         btnGoogleLogin.setOnClickListener(v -> signInGoogle());
 
     }
-
+/*
     @Override
     public void onStart(){
         super.onStart();
@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         if (currentUser != null) {
             navegaTelaHome();
         }
-    }
+    }*/
 
     private void startComponents(){
 
@@ -125,10 +125,11 @@ public class LoginActivity extends AppCompatActivity {
                                 .isNewUser();
 
                         if (isNewUser) {
-                            Intent navegaTelaCadastro = new Intent(this, ProfileActivity.class);
-                            navegaTelaCadastro.putExtra("nome", user.getDisplayName());
-                            navegaTelaCadastro.putExtra("email", user.getEmail());
-                            startActivity(navegaTelaCadastro);
+                            Intent navegaTelaProfile = new Intent(this, ProfileActivity.class);
+                            navegaTelaProfile.putExtra("nome", user.getDisplayName());
+                            navegaTelaProfile.putExtra("email", user.getEmail());
+                            navegaTelaProfile.putExtra("isNewUser", isNewUser);
+                            startActivity(navegaTelaProfile);
                         } else {
                             navegaTelaHome();
                         }
