@@ -103,17 +103,20 @@ public class ProfileActivity extends AppCompatActivity {
         user.child(firebaseUser.getUid()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    Log.e("firebase", "Erro ao ler dados!", task.getException());
-                    return;
-                }
-                else {
+                if (task.isSuccessful()) {
+
                     User userData = task.getResult().getValue(User.class);
 
                     if (userData != null) {
                         etName.setText(userData.getName());
                         etEmail.setText(userData.getMail());
                     }
+
+                else {
+                    Log.e("firebase", "Erro ao ler dados!", task.getException());
+                    return;
+                    }
+
                 }
             }
         });
