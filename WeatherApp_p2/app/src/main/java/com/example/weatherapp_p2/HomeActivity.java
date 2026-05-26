@@ -55,6 +55,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void navegaTelaPerfil(){
         Intent telaPerfil = new Intent(this, ProfileActivity.class);
+        telaPerfil.putExtra("isNewUser", false);
         startActivity(telaPerfil);
     }
 
@@ -89,7 +90,7 @@ public class HomeActivity extends AppCompatActivity {
         Intent telaLogin = new Intent(this, LoginActivity.class);
         telaLogin.addFlags(telaLogin.FLAG_ACTIVITY_NEW_TASK | telaLogin.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(telaLogin);
-       finish();
+        finish();
     }
 
 }
