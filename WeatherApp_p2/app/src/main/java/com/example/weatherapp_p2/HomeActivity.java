@@ -15,6 +15,7 @@ import androidx.credentials.CredentialManager;
 import androidx.credentials.CredentialManagerCallback;
 import androidx.credentials.exceptions.ClearCredentialException;
 
+import com.example.weatherapp_p2.database.AppDatabase;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.concurrent.Executors;
@@ -24,6 +25,7 @@ public class HomeActivity extends AppCompatActivity {
     private Button btnGoToFavorites, btnGoToProfile;
     private ImageView ivLogout;
     private FirebaseAuth mAuth;
+    private AppDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
