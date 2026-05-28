@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     id("com.google.gms.google-services")
@@ -19,6 +21,19 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        
+        // Lê do local.properties e injeta no BuildConfig
+        val localProps = Properties()
+        val localPropertiesFile = rootProject.file("local.properties")
+        if (localPropertiesFile.exists()) {
+            localPropertiesFile.inputStream().use { input ->
+                localProps.load(input)
+            }
+        }
+
+        buildConfigField("String", "MINHA_API_KEY", "\"${localProps.getProperty("MINHA_API_KEY")}\"")
+
+
     }
 
     buildTypes {
@@ -33,6 +48,10 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 }
 
@@ -66,5 +85,11 @@ dependencies {
     implementation("androidx.credentials:credentials:1.3.0")
     implementation("androidx.credentials:credentials-play-services-auth:1.3.0")
     implementation("com.google.android.libraries.identity.googleid:googleid:1.2.0")
+
+    //Geolocalização
+    implementation("com.google.android.gms:play-services-location:21.0.1")
+
+    //HttpClient
+    implementation("com.squareup.okhttp3:okhttp:4.9.3")
 
 }
