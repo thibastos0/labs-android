@@ -44,7 +44,7 @@ public class HomeActivity extends AppCompatActivity {
     private Button btnGoToFavorites, btnGoToProfile, btnUpdateCity;
     private EditText etCurrentCity;
     private ImageView ivLogout, ivWeatherIcon, ivFavorite;
-    private TextView tvTemperature;
+    private TextView tvTemperature, tvDescription;
     private FirebaseAuth mAuth;
     private AppDatabase db;
     private FusedLocationProviderClient fusedLocationClient;
@@ -87,6 +87,7 @@ public class HomeActivity extends AppCompatActivity {
         ivWeatherIcon = findViewById(R.id.ivWeatherIcon);
         ivFavorite = findViewById(R.id.ivFavorite);
         tvTemperature = findViewById(R.id.tvTemperature);
+        tvDescription = findViewById(R.id.tvDescription);
         mAuth = FirebaseAuth.getInstance();
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
     }
@@ -179,11 +180,14 @@ public class HomeActivity extends AppCompatActivity {
                 double temperature = main.getDouble("temp");
                 String iconCode = jsonObject.getJSONArray("weather")
                         .getJSONObject(0).getString("icon");
+                String descricao = jsonObject.getJSONArray("weather")
+                        .getJSONObject(0).getString("description");
 
                 String resourceName = "ic_" + iconCode;
                 int resId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
                 ivWeatherIcon.setImageResource(resId);
-                tvTemperature.setText(String.format("%.0f°", temperature));
+                tvTemperature.setText(String.format("%.0f°", temperature) + "C");
+                tvDescription.setText(descricao);
                 etCurrentCity.setText(nomeCidade);
 
             } catch (JSONException e) {

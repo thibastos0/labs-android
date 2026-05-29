@@ -9,6 +9,7 @@
     <string name="btn_save">Salvar</string>
     <string name="btn_cancel">Cancelar</string>
     <string name="hint_city">Digite uma cidade...</string>
+    <string name="weather_description">...</string>
     <string name="btn_update_city">Atualizar Clima</string>
     <string name="favorites_title">Cidades Favoritas</string>
 
