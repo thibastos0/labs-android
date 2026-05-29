@@ -66,9 +66,9 @@ public class HomeActivity extends AppCompatActivity {
         ivLogout.setOnClickListener(v -> navegaTelaLogin());
 
         btnUpdateCity.setOnClickListener(v -> {
-            String cidade = etCurrentCity.getText().toString();
+            String cidade = etCurrentCity.getText().toString().trim();
             if (!cidade.isEmpty()) {
-                fetchWeatherData(cidade);
+                fetchWeatherData(0,0, cidade);
             } else {
                 Toast.makeText(this, "Informe uma cidade!", Toast.LENGTH_SHORT).show();
             }
@@ -136,37 +136,30 @@ public class HomeActivity extends AppCompatActivity {
         finish();
     }
 
-    private void fetchWeatherData(String cidade){
-        String url = "https://api.openweathermap.org/data/2.5/weather?q=" + cidade + "&appid=" + API_KEY + "&units=metric";
+    private void fetchWeatherData(double lat, double lon, String cidade) {
+
+        String url_1 = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=metric&lang=pt_br&appid=" + API_KEY;
+        String url_2 = "https://api.openweathermap.org/data/2.5/weather?q=" + cidade + "&units=metric&lang=pt_br&appid=" + API_KEY;
+
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         executorService.execute(() -> {
             OkHttpClient client = new OkHttpClient();
-            Request request = new Request.Builder().url(url).build();
+            Request request;
 
-            try {
-                Response response = client.newCall(request).execute();
-                String result = response.body().string(); //retorno json API
-                runOnUiThread(() -> updateUI(result));
-            } catch (IOException e) {
-                Log.e("API OPENWEATHER", e.getMessage());
-                Toast.makeText(this, "API access error: " + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            if (cidade.equals("CurrentLocation")) {
+                request = new Request.Builder().url(url_1).build();
+            } else {
+                request = new Request.Builder().url(url_2).build();
             }
 
-        });
-    }
-
-    private void fetchCityData(double lat, double lon, String cidade) {
-        String url = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=metric&appid=" + API_KEY;
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
-        executorService.execute(() -> {
-            OkHttpClient client = new OkHttpClient();
-            Request request = new Request.Builder().url(url).build();
-
             try {
                 Response response = client.newCall(request).execute();
-                String result = response.body().string(); //retorno json API
-                etCurrentCity.setText(cidade);
-                runOnUiThread(() -> updateUI(result));
+                if (response.isSuccessful() && response.body() != null) {
+                    String result = response.body().string(); //retorno json API
+                    runOnUiThread(() -> updateUI(result));
+                } else {
+                    Log.e("API OPENWEATHER", "Erro no request (comunicação)" + response.code());
+                }
             } catch (IOException e) {
                 Log.e("API OPENWEATHER", e.getMessage());
                 Toast.makeText(this, "API access error: " + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
@@ -181,12 +174,9 @@ public class HomeActivity extends AppCompatActivity {
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 JSONObject main  = jsonObject.getJSONObject("main");
+
+                String nomeCidade = jsonObject.getString("name");
                 double temperature = main.getDouble("temp");
-
-                //String description = jsonObject.getJSONArray("weather")
-                //        .getJSONObject(0)
-                //        .getString("description");
-
                 String iconCode = jsonObject.getJSONArray("weather")
                         .getJSONObject(0).getString("icon");
 
@@ -194,6 +184,7 @@ public class HomeActivity extends AppCompatActivity {
                 int resId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
                 ivWeatherIcon.setImageResource(resId);
                 tvTemperature.setText(String.format("%.0f°", temperature));
+                etCurrentCity.setText(nomeCidade);
 
             } catch (JSONException e) {
                 Log.e("JSON API", e.getMessage());
@@ -224,7 +215,8 @@ public class HomeActivity extends AppCompatActivity {
                             double latitude = location.getLatitude();
                             double longitude = location.getLongitude();
                             //etCurrentCity.setText("Lat: " + latitude + " Long: " + longitude);
-                            fetchCityData(latitude, longitude, "local atual");
+                            Log.i("CurrentLocation", "Lat: " + latitude + " Long: " + longitude);
+                            fetchWeatherData(latitude, longitude, "CurrentLocation");
                         } else {
                             Toast.makeText(this,"Cache de localização vazio. Abra o Google Maps para atualizar.", Toast.LENGTH_SHORT).show();
                         }
@@ -277,18 +269,22 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-
+/*
     @Override
     protected void onStart(){
         super.onStart();
         coordenadasLocalizacao();
-    }
+    }*/
 
     @Override
     protected void onResume(){
         super.onResume();
-        if (etCurrentCity.getText().toString().equals(getString(R.string.hint_city))) {
+        String cidadeAtual = etCurrentCity.getText().toString().trim();
+        if (cidadeAtual.isEmpty()) {
             coordenadasLocalizacao();
+        } else {
+            //atualizar informações da cidade que estava selecionada no onResume()
+            fetchWeatherData(0,0, cidadeAtual);
         }
     }
 

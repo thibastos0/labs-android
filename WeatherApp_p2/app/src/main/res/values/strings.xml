@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WeatherApp Premium</string>
+    <string name="app_name">WeatherApp P2</string>
     <string name="login_title">Bem-vindo ao WeatherApp</string>
     <string name="login_subtitle">Descubra o clima em tempo real na sua localização</string>
     <string name="btn_google_login">Entrar com o Google</string>
