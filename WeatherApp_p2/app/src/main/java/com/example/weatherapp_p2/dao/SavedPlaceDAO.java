@@ -16,6 +16,9 @@ public interface SavedPlaceDAO {
     @Query("SELECT * FROM favorito WHERE userId = :userId")
     List<SavedPlace> loadAllById(String userId);
 
+    @Query("SELECT COUNT(*) FROM favorito WHERE userId = :userId AND city = :cidade")
+    int isSavedPlace(String userId, String cidade);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insterSavedPlace(SavedPlace savedPlace);
 

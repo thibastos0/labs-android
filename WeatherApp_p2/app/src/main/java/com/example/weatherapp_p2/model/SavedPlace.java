@@ -17,8 +17,8 @@ public class SavedPlace {
     private String userId;
     @ColumnInfo(name = "city")
     private String city;
-    @ColumnInfo(name = "state")
-    private String state;
+    @ColumnInfo(name = "cityId")
+    private long cityId;
     @ColumnInfo(name = "country")
     private String country;
     @ColumnInfo(name = "lat")
@@ -28,10 +28,10 @@ public class SavedPlace {
 
     public SavedPlace() { }
 
-    public SavedPlace(String userId, String city, String state, String country, double latitude, double longitude) {
+    public SavedPlace(String userId, String city, long cityId, String country, double latitude, double longitude) {
         this.userId = userId;
         this.city = city;
-        this.state = state;
+        this.cityId = cityId;
         this.country = country;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -61,12 +61,12 @@ public class SavedPlace {
         this.city = city;
     }
 
-    public String getState() {
-        return state;
+    public long getCityId() {
+        return cityId;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setCityId(long cityId) {
+        this.cityId = cityId;
     }
 
     public String getCountry() {

@@ -1,8 +1,10 @@
 package com.example.weatherapp_p2;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CancellationSignal;
 import android.util.Log;
@@ -16,12 +18,14 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.credentials.ClearCredentialStateRequest;
 import androidx.credentials.CredentialManager;
 import androidx.credentials.CredentialManagerCallback;
 import androidx.credentials.exceptions.ClearCredentialException;
 
 import com.example.weatherapp_p2.database.AppDatabase;
+import com.example.weatherapp_p2.model.SavedPlace;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.Priority;
@@ -32,6 +36,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -45,8 +52,10 @@ public class HomeActivity extends AppCompatActivity {
     private EditText etCurrentCity;
     private ImageView ivLogout, ivWeatherIcon, ivFavorite;
     private TextView tvTemperature, tvDescription;
+    private Map<String, Integer> iconMap = new HashMap<>();
     private FirebaseAuth mAuth;
     private AppDatabase db;
+    private SavedPlace savedPlace;
     private FusedLocationProviderClient fusedLocationClient;
     private static final int LOCATION_PERMISSION_REQUEST = 1;
     private static final String API_KEY = BuildConfig.MINHA_API_KEY;
@@ -57,13 +66,19 @@ public class HomeActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
 
+        db = AppDatabase.getInstance(this);
+        savedPlace = new SavedPlace();
         startComponents();
+        starIconMap();
+        verificaFavorito();
 
         btnGoToProfile.setOnClickListener(v -> navegaTelaPerfil());
 
         btnGoToFavorites.setOnClickListener(v -> navegaTelaFavoritos());
 
         ivLogout.setOnClickListener(v -> navegaTelaLogin());
+
+        ivFavorite.setOnClickListener(v -> salvaFavorito());
 
         btnUpdateCity.setOnClickListener(v -> {
             String cidade = etCurrentCity.getText().toString().trim();
@@ -76,6 +91,27 @@ public class HomeActivity extends AppCompatActivity {
 
         //fetchWeatherData("Indaiatuba");
 
+    }
+
+    private void starIconMap() {
+        iconMap.put("01d", R.drawable.ic_01d);
+        iconMap.put("01n", R.drawable.ic_01n);
+        iconMap.put("02d", R.drawable.ic_02d);
+        iconMap.put("02n", R.drawable.ic_02n);
+        iconMap.put("03d", R.drawable.ic_03d);
+        iconMap.put("03n", R.drawable.ic_03n);
+        iconMap.put("04d", R.drawable.ic_04d);
+        iconMap.put("04n", R.drawable.ic_04n);
+        iconMap.put("09d", R.drawable.ic_09d);
+        iconMap.put("09n", R.drawable.ic_09n);
+        iconMap.put("10d", R.drawable.ic_10d);
+        iconMap.put("10n", R.drawable.ic_10n);
+        iconMap.put("11d", R.drawable.ic_11d);
+        iconMap.put("11n", R.drawable.ic_11n);
+        iconMap.put("13d", R.drawable.ic_13d);
+        iconMap.put("13n", R.drawable.ic_13n);
+        iconMap.put("50d", R.drawable.ic_50d);
+        iconMap.put("50n", R.drawable.ic_50n);
     }
 
     private void startComponents(){
@@ -103,6 +139,85 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(telaPerfil);
     }
 
+    private void verificaFavorito() {
+
+        String userId = mAuth.getCurrentUser().getUid();
+        String cidadeAtual = etCurrentCity.getText().toString().trim();
+
+        Executors.newSingleThreadExecutor().execute(() -> {
+            try {
+                //verifica se existe a Cidade para o usuário
+                int count = db.savedPlaceDAO().isSavedPlace(userId, cidadeAtual);
+
+                runOnUiThread(() -> {
+                    if (count > 0) {
+                        ivFavorite.setTag(R.drawable.ic_heart_filled);
+                        ivFavorite.setImageResource(R.drawable.ic_heart_filled);
+                        Toast.makeText(this, "Cidade está entre os favoritos.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        ivFavorite.setTag(R.drawable.ic_heart_border);
+                        ivFavorite.setImageResource(R.drawable.ic_heart_border);
+                        Toast.makeText(this, "Clique no coração para favoritar a cidade.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } catch (Exception e) {
+                // Se algo deu errado
+                runOnUiThread(() -> {
+                    Log.e("VerificaFavorito", e.getMessage());
+                    Toast.makeText(this, "Erro ao verificar se é favorito: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+            }
+        });
+
+    }
+    private void salvaFavorito() {
+
+        Integer resourceId = (Integer) ivFavorite.getTag();
+
+        if (resourceId == R.drawable.ic_heart_border) {
+
+            Executors.newSingleThreadExecutor().execute(() -> {
+                try {
+                    //salva cidade no BD
+                    db.savedPlaceDAO().insterSavedPlace(savedPlace);
+
+                    runOnUiThread(() -> {
+                        ivFavorite.setImageResource(R.drawable.ic_heart_filled);
+                        ivFavorite.setTag(R.drawable.ic_heart_filled);
+                        Toast.makeText(this, "Cidade adicionada aos favoritos!", Toast.LENGTH_SHORT).show();
+                    });
+                } catch (Exception e) {
+                    // Se algo deu errado
+                    runOnUiThread(() -> {
+                        Toast.makeText(this, "Erro ao adicionar como favorito: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+                }
+            });
+
+
+        } else {
+
+            Executors.newSingleThreadExecutor().execute(() -> {
+                try {
+                    //deleta cidade no BD
+                    db.savedPlaceDAO().deleteSavedPlace(savedPlace);
+
+                    runOnUiThread(() -> {
+                        ivFavorite.setImageResource(R.drawable.ic_heart_border);
+                        ivFavorite.setTag(R.drawable.ic_heart_border);
+                        Toast.makeText(this, "Cidade removida dos favoritos!", Toast.LENGTH_SHORT).show();
+                    });
+                } catch (Exception e) {
+                    // Se algo deu errado
+                    runOnUiThread(() -> {
+                        Toast.makeText(this, "Erro ao remover como favorito: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+                }
+            });
+
+        }
+
+    }
 
     private void signOut() {
         // Firebase sign out
@@ -183,12 +298,28 @@ public class HomeActivity extends AppCompatActivity {
                 String descricao = jsonObject.getJSONArray("weather")
                         .getJSONObject(0).getString("description");
 
-                String resourceName = "ic_" + iconCode;
-                int resId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
-                ivWeatherIcon.setImageResource(resId);
+                String country = jsonObject.getJSONObject("sys")
+                        .getString("country");
+                double latitude = jsonObject.getJSONObject("coord")
+                        .getDouble("lat");
+                double longitude = jsonObject.getJSONObject("coord")
+                        .getDouble("lon");
+                long cityId = jsonObject.getLong("id");
+
+                savedPlace.setUserId(mAuth.getCurrentUser().getUid());
+                savedPlace.setCity(nomeCidade);
+                savedPlace.setCityId(cityId);
+                savedPlace.setCountry(country);
+                savedPlace.setLatitude(latitude);
+                savedPlace.setLongitude(longitude);
+
+                //String resourceName = "ic_" + iconCode;
+                //int resId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
+                ivWeatherIcon.setImageResource(iconMap.get(iconCode));
                 tvTemperature.setText(String.format("%.0f°", temperature) + "C");
                 tvDescription.setText(descricao);
                 etCurrentCity.setText(nomeCidade);
+                verificaFavorito();
 
             } catch (JSONException e) {
                 Log.e("JSON API", e.getMessage());
@@ -272,13 +403,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         }
     }
-
-/*
-    @Override
-    protected void onStart(){
-        super.onStart();
-        coordenadasLocalizacao();
-    }*/
 
     @Override
     protected void onResume(){
