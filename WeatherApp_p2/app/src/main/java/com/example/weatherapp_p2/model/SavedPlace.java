@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
 import org.checkerframework.checker.interning.qual.CompareToMethod;
 
 @Entity(tableName = "favorito",
-indices = {@Index(value = {"userId"}, unique = true)}
+indices = {@Index(value = {"userId"}, unique = false)}
 )
 public class SavedPlace {
     @PrimaryKey(autoGenerate = true)
@@ -25,16 +25,19 @@ public class SavedPlace {
     private double latitude;
     @ColumnInfo(name = "lon")
     private double longitude;
+    @ColumnInfo(name = "isActive")
+    private boolean isActive;
 
     public SavedPlace() { }
 
-    public SavedPlace(String userId, String city, long cityId, String country, double latitude, double longitude) {
+    public SavedPlace(String userId, String city, long cityId, String country, double latitude, double longitude, boolean isActive) {
         this.userId = userId;
         this.city = city;
         this.cityId = cityId;
         this.country = country;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.isActive = isActive;
     }
 
     public int getId() {
@@ -92,4 +95,9 @@ public class SavedPlace {
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
+
+    public boolean isActive() { return isActive; }
+
+    public void setActive(boolean active) { this.isActive = active; }
+
 }

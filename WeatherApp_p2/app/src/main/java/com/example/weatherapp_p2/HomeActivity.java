@@ -76,7 +76,7 @@ public class HomeActivity extends AppCompatActivity {
 
         btnGoToFavorites.setOnClickListener(v -> navegaTelaFavoritos());
 
-        ivLogout.setOnClickListener(v -> navegaTelaLogin());
+        ivLogout.setOnClickListener(v -> signOut());
 
         ivFavorite.setOnClickListener(v -> salvaFavorito());
 
@@ -88,8 +88,6 @@ public class HomeActivity extends AppCompatActivity {
                 Toast.makeText(this, "Informe uma cidade!", Toast.LENGTH_SHORT).show();
             }
         });
-
-        //fetchWeatherData("Indaiatuba");
 
     }
 
@@ -144,20 +142,26 @@ public class HomeActivity extends AppCompatActivity {
         String userId = mAuth.getCurrentUser().getUid();
         String cidadeAtual = etCurrentCity.getText().toString().trim();
 
+        if (cidadeAtual.isEmpty()) return;
+
         Executors.newSingleThreadExecutor().execute(() -> {
             try {
-                //verifica se existe a Cidade para o usuário
-                int count = db.savedPlaceDAO().isSavedPlace(userId, cidadeAtual);
+                // Busca o objeto completo no banco para obter o ID
+                SavedPlace savedPlaceNoBD = db.savedPlaceDAO().getSavedPlace(userId, cidadeAtual);
 
                 runOnUiThread(() -> {
-                    if (count > 0) {
+                    if (savedPlaceNoBD != null && savedPlaceNoBD.isActive()) {
+                        this.savedPlace = savedPlaceNoBD;
                         ivFavorite.setTag(R.drawable.ic_heart_filled);
                         ivFavorite.setImageResource(R.drawable.ic_heart_filled);
-                        Toast.makeText(this, "Cidade está entre os favoritos.", Toast.LENGTH_SHORT).show();
                     } else {
+                        if (savedPlaceNoBD != null) {
+                            this.savedPlace.setId(savedPlaceNoBD.getId());
+                        } else {
+                            this.savedPlace.setId(0);
+                        }
                         ivFavorite.setTag(R.drawable.ic_heart_border);
                         ivFavorite.setImageResource(R.drawable.ic_heart_border);
-                        Toast.makeText(this, "Clique no coração para favoritar a cidade.", Toast.LENGTH_SHORT).show();
                     }
                 });
             } catch (Exception e) {
@@ -179,7 +183,8 @@ public class HomeActivity extends AppCompatActivity {
             Executors.newSingleThreadExecutor().execute(() -> {
                 try {
                     //salva cidade no BD
-                    db.savedPlaceDAO().insterSavedPlace(savedPlace);
+                    savedPlace.setActive(true);
+                    db.savedPlaceDAO().insertSavedPlace(savedPlace);
 
                     runOnUiThread(() -> {
                         ivFavorite.setImageResource(R.drawable.ic_heart_filled);
@@ -200,7 +205,9 @@ public class HomeActivity extends AppCompatActivity {
             Executors.newSingleThreadExecutor().execute(() -> {
                 try {
                     //deleta cidade no BD
-                    db.savedPlaceDAO().deleteSavedPlace(savedPlace);
+                    //db.savedPlaceDAO().deleteSavedPlace(savedPlace);
+                    savedPlace.setActive(false);
+                    db.savedPlaceDAO().updateSavedPlace(savedPlace);
 
                     runOnUiThread(() -> {
                         ivFavorite.setImageResource(R.drawable.ic_heart_border);
@@ -306,12 +313,15 @@ public class HomeActivity extends AppCompatActivity {
                         .getDouble("lon");
                 long cityId = jsonObject.getLong("id");
 
+                // Reset do objeto
+                savedPlace = new SavedPlace();
                 savedPlace.setUserId(mAuth.getCurrentUser().getUid());
                 savedPlace.setCity(nomeCidade);
                 savedPlace.setCityId(cityId);
                 savedPlace.setCountry(country);
                 savedPlace.setLatitude(latitude);
                 savedPlace.setLongitude(longitude);
+                savedPlace.setActive(false);
 
                 //String resourceName = "ic_" + iconCode;
                 //int resId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
@@ -404,16 +414,39 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    //salva newIntent
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+    }
+
     @Override
     protected void onResume(){
         super.onResume();
-        String cidadeAtual = etCurrentCity.getText().toString().trim();
-        if (cidadeAtual.isEmpty()) {
-            coordenadasLocalizacao();
+
+        String cidadeSelecionada = getIntent().getStringExtra("SELECTED_CITY");
+
+        if (cidadeSelecionada != null && !cidadeSelecionada.isEmpty()) {
+            fetchWeatherData(0, 0, cidadeSelecionada);
+            getIntent().removeExtra("SELECTED_CITY");
+
         } else {
-            //atualizar informações da cidade que estava selecionada no onResume()
-            fetchWeatherData(0,0, cidadeAtual);
+
+            //se vem de tela diferente da Favoritos
+            String cidadeNoEditText = etCurrentCity.getText().toString().trim();
+
+            if (!cidadeNoEditText.isEmpty()) {
+                Log.i("onresume fetch", cidadeNoEditText);
+                fetchWeatherData(0, 0, cidadeNoEditText);
+            } else {
+                //importante para a primeira vez que abre a tela Home, carregando pela a geolocalização
+                Log.i("onresume coordenadas", cidadeNoEditText);
+                coordenadasLocalizacao();
+            }
+
         }
     }
+
 
 }

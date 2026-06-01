@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 import com.example.weatherapp_p2.dao.SavedPlaceDAO;
 import com.example.weatherapp_p2.model.SavedPlace;
 
-@Database(entities = {SavedPlace.class}, version = 2)
+@Database(entities = {SavedPlace.class}, version = 3)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract SavedPlaceDAO savedPlaceDAO();
     private static volatile AppDatabase INSTANCE;

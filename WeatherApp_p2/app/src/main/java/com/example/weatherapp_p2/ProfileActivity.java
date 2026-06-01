@@ -124,7 +124,10 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void navegaTelaHome(){
         Intent telaHome = new Intent(this, HomeActivity.class);
+        // Limpa o empilhamento de telas para não poluir o fluxo do app
+        telaHome.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(telaHome);
+        finish();
     }
 
 }
